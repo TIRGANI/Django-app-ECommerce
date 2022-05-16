@@ -1,0 +1,84 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+    <div class="row justify-content-between mt-3">
+        <h2 class="col-4">{{ title|title }}</h2>
+        <a class="btn btn-success col-2" href="/addPersonne">ajouter</a>
+    </div>
+    <div class="card mt-3">
+        <form method="post" action="{% url 'search-personne' %}">
+            {% csrf_token %}
+            <div class="card-header">
+                <div class="input-group">
+                  <div class="form-outline">
+                    <input type="search" class="form-control" placeholder="search" name="searched"/>
+                  </div>
+                  <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
+            </div>
+        </form>
+        <div class="card-body">
+            <table class="table table-hover">
+        <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Nom</th>
+              <th scope="col">Prenom</th>
+              <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for c in personnes %}
+            <tr>
+              <td>{{c.id}}</td>
+              <td>{{c.nom}}</td>
+              <td>{{c.prenom}} </td>
+              <td>{{c.email}} </td>
+              <td>
+                  <a href="/personne/detailsPersonne/{{ c.id }}" class="btn btn-sm btn-primary">Affiche</a>
+                  <a href="/personne/commandesPersonne/{{ c.id }}" class="btn btn-sm btn-primary">Commandes</a>
+                  <a href="/personne/editPersonne/{{ c.id }}" class="btn btn-sm btn-info">Edit</a>
+                  <a href="/personne/deletePersonne/{{ c.id }}" class="btn btn-sm btn-warning" onclick="return confirm('Sur ?');">Supprimer</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+
+         <nav aria-label="Page navigation example">
+             {% if personnes.has_other_pages %}
+              <ul class="pagination">
+                    {% if personnes.has_previous %}
+                      <li class="page-item">
+                      <a class="page-link" href="?page={{ personnes.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    {% else %}
+                      <li class="disabled"><span>&laquo;</span></li>
+                    {% endif %}
+
+                    {% for i in personnes.paginator.page_range %}
+                      {% if personnes.number == i %}
+                          <li class="page-item active page-link">{{ i }}</li>
+                      {% else %}
+                        <li class="page-item active"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                      {% endif %}
+                    {% endfor %}
+
+                    {% if personnes.has_next %}
+                      <li class="page-item">
+                      <a class="page-link" href="?page={{ personnes.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+                    {% else %}
+                      <li class="disabled"><span>&raquo;</span></li>
+                    {% endif %}
+              </ul>
+             {% endif %}
+            </nav>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,11 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+        <form method="POST" action="/categorie/createCat" class="post-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nomCategorie">Nom</label>
+                <input type="text" name="nomCategorie" class="form-control" id="nomCategorie">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+        </form>
+{% endblock content %}

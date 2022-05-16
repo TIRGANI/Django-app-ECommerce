@@ -1,0 +1,19 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+        <form method="POST" action="/personne/editPer/{{ personne.id }}" class="post-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nom">Nom</label>
+                <input type="text" name="nom" class="form-control" id="nom" value="{{ personne.nom}}">
+            </div>
+            <div class="form-group">
+                <label for="prenom">Prenom</label>
+                <input type="text" name="prenom" class="form-control" id="prenom" value="{{ personne.prenom }}">
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" name="email" class="form-control" id="email" value="{{ personne.email }}">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">valider</button>
+        </form>
+{% endblock content %}

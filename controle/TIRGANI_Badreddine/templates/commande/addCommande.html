@@ -1,0 +1,24 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+    <form method="POST" action="/commande/createCom" class="post-form">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="referenceCmd">Reference</label>
+            <input type="text" name="referenceCmd" class="form-control" id="referenceCmd">
+        </div>
+        <div class="form-group">
+            <label for="dateCmd">Date</label>
+            <input type="date" name="dateCmd" class="form-control" id="dateCmd">
+        </div>
+        <div>
+            <label for="personne">Personne</label>
+            <select id="personne" name="personne" class="form-control">
+                {% for c in personnes %}
+                    <option value={{ c.id }}>{{ c.nom }} {{ c.prenom }}</option>
+                {% endfor %}
+            </select>
+
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Ajouter</button>
+    </form>
+{% endblock content %}

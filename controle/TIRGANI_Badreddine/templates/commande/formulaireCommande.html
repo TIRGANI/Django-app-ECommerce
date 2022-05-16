@@ -1,0 +1,10 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+        <form method="POST" action="#" class="post-form">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }}
+            </table>
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+{% endblock content %}

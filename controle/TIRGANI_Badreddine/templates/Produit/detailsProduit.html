@@ -1,0 +1,31 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Reference</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Date</th>
+                      <th scope="col">Prix</th>
+                      <th scope="col">Command</th>
+                      <th scope="col">Categorie</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{produits.id}}</td>
+                      <td>{{produits.produitRef}}</td>
+                      <td>{{produits.nomProduit}} </td>
+                      <td>{{produits.dateProduit}} </td>
+                      <td>{{produits.prix}} </td>
+                      <td>{{produits.commande.referenceCmd}} </td>
+                      <td>{{produits.categorie.nomCategorie}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,41 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+        <form method="POST" action="/produit/editProd/{{ produit.id }}" class="post-form">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="produitRef">Reference</label>
+                <input type="text" name="produitRef" class="form-control" id="produitRef" value="{{ produit.produitRef}}">
+            </div>
+            <div class="form-group">
+                <label for="nomProduit">Nom</label>
+                <input type="text" name="nomProduit" class="form-control" id="nomProduit" value="{{ produit.nomProduit}}">
+            </div>
+            <div class="form-group">
+                <label for="dateProduit">Date</label>
+                <input type="date" name="dateProduit" class="form-control" id="dateProduit" value="{{ produit.dateProduit }}">
+            </div>
+            <div class="form-group">
+                <label for="prix">Prix</label>
+                <input type="number" name="prix" class="form-control" id="prix" value="{{ produit.prix }}">
+            </div>
+              <div class="form-group">
+                <label for="prix">Command</label>
+                 <select id="commande" name="commande" class="form-control">
+                {% for c in commandes %}
+                    <option value={{ c.id }}>{{ c.referenceCmd }}</option>
+                {% endfor %}
+            </select>
+
+            </div>
+              <div class="form-group">
+                <label for="prix">Categorie</label>
+                  <select id="categorie" name="categorie" class="form-control">
+                {% for c in categories %}
+                    <option value={{ c.id }}>{{ c.nomCategorie }}</option>
+                {% endfor %}
+            </select>
+
+            </div>
+            <button type="submit" class="btn btn-primary mt-3">valider</button>
+        </form>
+{% endblock content %}

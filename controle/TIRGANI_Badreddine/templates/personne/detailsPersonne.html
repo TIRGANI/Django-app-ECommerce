@@ -1,0 +1,25 @@
+{% extends 'includes/layout.html' %}
+{% block content %}
+    <div class="card mt-3">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                      <th scope="col">Id</th>
+                      <th scope="col">Nom</th>
+                      <th scope="col">Prenom</th>
+                      <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                      <td>{{personnes.id}}</td>
+                      <td>{{personnes.nom}}</td>
+                      <td>{{personnes.prenom}} </td>
+                      <td>{{personnes.email}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock content %}
